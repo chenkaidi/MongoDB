@@ -1,11 +1,31 @@
 [Unit]
-Description=MongoDB document-oriented database
+Description=MongoDB Database Server
+Documentation=https://docs.mongodb.org/manual
 After=network.target
- 
+
 [Service]
-PIDFile=/var/run/mongodb.pid
-ExecStart=/usr/bin/mongo -f /etc/mongodb.conf
-ExecStop=/bin/kill -INT $MAINPID
- 
+User=mongod
+Group=mongod
+Environment="OPTIONS=-f /etc/mongod.conf"
+ExecStart=/usr/bin/mongod $OPTIONS
+Type=forking
+# file size
+LimitFSIZE=infinity
+# cpu time
+LimitCPU=infinity
+# virtual memory size
+LimitAS=infinity
+# open files
+LimitNOFILE=64000
+# processes/threads
+LimitNPROC=64000
+# locked memory
+LimitMEMLOCK=infinity
+# total threads (user+kernel)
+TasksMax=infinity
+TasksAccounting=false
+# Recommended limits for for mongod as specified in
+# http://docs.mongodb.org/manual/reference/ulimit/#recommended-settings
+
 [Install]
 WantedBy=multi-user.target
