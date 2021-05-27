@@ -7,8 +7,10 @@ After=network.target
 User=mongod
 Group=mongod
 Environment="OPTIONS=-f /etc/mongod.conf"
+ExecStartPre=/usr/bin/chown mongod:mongod -R /data/mongodb
+ExecStartPre=/usr/bin/chmod 0755 -R /data/mongodb
 ExecStart=/usr/bin/mongod $OPTIONS
-PIDFile=/var/run/mongod.pid
+PIDFile=/data/mongodb/mongod.pid
 Type=forking
 # file size
 LimitFSIZE=infinity
