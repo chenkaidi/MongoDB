@@ -39,7 +39,7 @@ chown mongod:mongod -R /data/mongodb/data /data/mongodb/logs
 
 默认位置：/etc/mongod.conf
 
-
+https://github.com/chenkaidi/MongoDB/blob/main/3.6/mongod.conf
 
 ### 5.连接MongoDB数据库
 
