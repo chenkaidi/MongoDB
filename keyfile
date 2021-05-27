@@ -1,0 +1,5 @@
+# 生成keyfile文件
+openssl rand -base64 90 > /data/mongodb/keyfile
+
+#复制到其他节点
+scp /data/mongodb/keyfile  root@OtherNodeIP:/data/mongodb/keyfile
