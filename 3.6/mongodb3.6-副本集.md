@@ -32,7 +32,7 @@ mkdir -p /data/mongodb/data /data/mongodb/logs
  默认是使用mongod执行的，所以需要修改一下目录权限
 
 ```
-chown mongod:mongod -R /data/mongodb/data /data/mongodb/logs 
+chown mongod:mongod -R /data/mongodb
 ```
 
 ### 4.修改配置文件
