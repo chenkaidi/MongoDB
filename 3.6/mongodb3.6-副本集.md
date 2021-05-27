@@ -83,7 +83,7 @@ operationProfiling:
     mode: off  
 replication:  
     oplogSizeMB: 10240  
-    replSetName: longshine 
+    replSetName: test 
     secondaryIndexPrefetch: all  
 ```
 
