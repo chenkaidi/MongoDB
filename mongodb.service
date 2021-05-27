@@ -1,0 +1,11 @@
+[Unit]
+Description=MongoDB document-oriented database
+After=network.target
+ 
+[Service]
+PIDFile=/var/run/mongod.pid
+ExecStart=/usr/bin/mongo -f /etc/mongodb.conf
+ExecStop=/bin/kill -INT $MAINPID
+ 
+[Install]
+WantedBy=multi-user.target
