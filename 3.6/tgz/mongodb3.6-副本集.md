@@ -60,9 +60,16 @@ rs.initiate(config)
 rs.status()
 ```
 上面执行成功后，可以使用rs.status()查看副本集当前状态。
+上面配置文件中，_id:'test'表示副本集名称，与前面mongodb.conf配置文件中的replSet参数配置的名称要一致。
+
+priority:2表示优先级，优先级越高，副本集初始化时会选举为主。arbiterOnly:true表示该实例为仲裁节点，不存储数据，只参与投票。
 
 
-创建一个超级用户
+
+
+### 6.创建用户
+
+##### 创建一个超级用户
 
 超级用户的role有两种，userAdmin或者userAdminAnyDatabase(比前一种多加了对所有数据库的访问)。
 
@@ -82,8 +89,7 @@ db是指定数据库的名字，admin是管理数据库。
 )
 ```
 
-### 6.创建验证用户
-
+##### 验证用户
 ```
 >use test
 >db.createUser(
@@ -101,8 +107,7 @@ db是指定数据库的名字，admin是管理数据库。
 ### 7.修改配置文件
 
 security:
-
-​    authorization: enabled
+  authorization: enabled
 
 添加上验证，重启mongd服务
 
