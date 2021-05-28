@@ -79,8 +79,8 @@ db是指定数据库的名字，admin是管理数据库。
 >use admin
 >db.createUser(
   {
-    user: "name",
-    pwd: "name123",
+    user: "zhangsan",
+    pwd: "zhangsan123",
     roles:
     [
       {roles: "userAdminAnyDatabase",db: "admin"}
@@ -91,7 +91,7 @@ db是指定数据库的名字，admin是管理数据库。
 
 ##### 验证用户
 ```
->use test
+>use zhangsan
 >db.createUser(
   {
     user:"oneUser",
