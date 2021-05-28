@@ -76,10 +76,7 @@ db是指定数据库的名字，admin是管理数据库。
     pwd: "name123",
     roles:
     [
-      {
-        roles: "userAdminAnyDatabase",
-        db: "admin"
-      }
+      {roles: "userAdminAnyDatabase",db: "admin"}
     ]
   }
 )
