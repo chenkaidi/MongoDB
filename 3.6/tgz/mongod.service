@@ -4,8 +4,8 @@ Documentation=https://docs.mongodb.org/manual
 After=network.target
 
 [Service]
-Environment="OPTIONS=-f /etc/mongod.conf"
-ExecStart=/usr/bin/mongod $OPTIONS
+Environment="OPTIONS=-f /data/mongodb/conf/mongod.conf"
+ExecStart=/data/mongodb/bin/mongod $OPTIONS
 PIDFile=/data/mongodb/mongod.pid
 Type=forking
 # file size
