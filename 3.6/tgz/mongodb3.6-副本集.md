@@ -104,24 +104,26 @@ db是指定数据库的名字，admin是管理数据库。
 )
 ```
 
-### 7.修改配置文件
+### 7.加权限认证
 
-security:
-  authorization: enabled
+副本集采用keyfile文件来实现权限认证，并且副本集中的所有成员使用的keyfile必须一样。
 
-添加上验证，重启mongd服务
-
-非安全模式启动数据库
-
+##### 生成keyfile文件
 ```
->mongod  --dbpath /data/mongodb/data   &（后台执行）
+openssl rand -base64 90 > /data/mongodb/conf/keyfile
+chmod 400 /data/mongodb/conf/keyfile
+到其他节点
+scp /data/mongodb/conf/keyfile  root@OtherNodeIP:/data/mongodb/conf/keyfile
 ```
 
-安全模式下启动数据库
+另外需要注意，keyfile文件权限必须是X00，也就是说，不能给group和other成员分配任何权限，否则实例无法启动。
 
-```
->mongod --auth --dbpath /data/mongodb/data
-```
+生成好keyfile之后，将keyfile写入mongodb.conf配置文件中，在mongodb.conf配置文件中增加如下配置：
+
+keyFile=/data/mongodb/conf/keyfile
+其他实例做同样修改，重启所有实例。
+在配置文件中开启了keyFile，就不需要开启auth认证，因为开启keyFile，就默认开启了auth。
+
 
 ### 8.登录验证
 
