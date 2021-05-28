@@ -155,7 +155,7 @@ use mydbdb.runCommand(
   }）
 ```
 
-#####查看用户信息
+##### 查看用户信息
 
 ```
 db.runCommand({usersInfo:"userName"})
