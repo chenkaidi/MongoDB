@@ -58,6 +58,7 @@ config={
 }
 
 rs.initiate(config)
+rs.status()
 ```
 上面执行成功后，可以使用rs.status()查看副本集当前状态。
 
