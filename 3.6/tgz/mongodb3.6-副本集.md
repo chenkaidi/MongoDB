@@ -2,32 +2,12 @@
 
 ### 1.配置安装 
 
-##### 配置yum
-
-```
-vim /etc/yum.repos.d/mongodb.repo
-```
-
-```
-[mongodb-org-3.6]
-name=MongoDB Repository
-baseurl=https://repo.mongodb.org/yum/redhat/\$releasever/mongodb-org/3.6/x86_64/
-gpgcheck=1
-enabled=1
-gpgkey=https://www.mongodb.org/static/pgp/server-3.6.asc
-```
-
 ##### 或者下载tgz包
 ```
 wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.6.23.tgz
 ```
 
 ### 2.安装
-
-##### yum 安装
-```
-#yum -y install mongodb-org*
-```
 
 ##### tgz包安装
 ```
@@ -40,20 +20,15 @@ mkdir /data
 一般分配到独立的大分区
 
 ```
-mkdir -p /data/mongodb/data /data/mongodb/logs
+mkdir -p /data/mongodb/data /data/mongodb/logs  /data/mongodb/conf
 ```
 
- 默认是使用mongod执行的，所以需要修改一下目录权限
-
-```
-chown mongod:mongod -R /data/mongodb
-```
 
 ### 4.修改配置文件
 
-默认位置：/etc/mongod.conf
+mongod.conf
 
-https://github.com/chenkaidi/MongoDB/blob/main/3.6/mongod.conf
+https://github.com/chenkaidi/MongoDB/blob/main/3.6/tgz/mongod.conf
 
 ### 5.连接MongoDB数据库
 
