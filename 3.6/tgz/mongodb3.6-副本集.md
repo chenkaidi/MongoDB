@@ -155,14 +155,18 @@ use mydbdb.runCommand(
   }）
 ```
 
-**查看用户信息**
+#####查看用户信息
 
 ```
 db.runCommand({usersInfo:"userName"})
-
-修改密码
+```
+##### 修改密码
+```
 use admin
-db.changeUserPassword("username", "xxx")修改密码和用户信息
+db.changeUserPassword("username", "xxx")
+```
+##### 修改密码和用户信息
+```
 db.runCommand(
   {
     updateUser:"username",
