@@ -30,6 +30,10 @@ mongod.conf
 
 https://github.com/chenkaidi/MongoDB/blob/main/3.6/tgz/mongod.conf
 
+mongod.service
+
+https://github.com/chenkaidi/MongoDB/blob/main/3.6/tgz/mongod.service
+
 ### 5.连接MongoDB数据库
 
 直接使用mongo命令进行连接，默认端口是27017
