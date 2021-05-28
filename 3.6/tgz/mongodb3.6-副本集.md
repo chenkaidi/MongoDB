@@ -51,14 +51,17 @@ use admin
 config={
     _id:'test',
     members:[
-        {_id:1, host:'localhost:27011',priority:2},
-        {_id:2, host:'localhost:27012',priority:1},
-        {_id:3, host:'localhost:27013',arbiterOnly:true}
+        {_id:1, host:'192.168.0.1:27017',priority:2},
+        {_id:2, host:'192.168.0.2:27017',priority:1},
+        {_id:3, host:'192.168.0.3:27017',arbiterOnly:true}
     ]
 }
 
 rs.initiate(config)
 ```
+上面执行成功后，可以使用rs.status()查看副本集当前状态。
+
+
 创建一个超级用户
 
 超级用户的role有两种，userAdmin或者userAdminAnyDatabase(比前一种多加了对所有数据库的访问)。
