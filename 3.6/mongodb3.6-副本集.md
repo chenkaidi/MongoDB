@@ -1,6 +1,8 @@
 # mongodb3.6-副本集-安装配置
 
-### 1.配置yum
+### 1.配置安装 
+
+##### 配置yum
 
 ```
 vim /etc/yum.repos.d/mongodb.repo
@@ -15,10 +17,22 @@ enabled=1
 gpgkey=https://www.mongodb.org/static/pgp/server-3.6.asc
 ```
 
+##### 或者下载tgz包
+```
+wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.6.23.tgz
+```
+
 ### 2.安装
 
+##### yum 安装
 ```
 #yum -y install mongodb-org*
+```
+
+##### tgz包安装
+```
+mkdir /data
+/data/mongodb
 ```
 
 ### 3.创建数据目录
