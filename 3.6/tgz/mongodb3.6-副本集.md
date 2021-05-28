@@ -44,8 +44,8 @@ https://github.com/chenkaidi/MongoDB/blob/main/3.6/tgz/mongod.service
 mongo --port 27017
 ```
 
+##### 初始化副本集
 ```
-mongo --port 27011
 
 use admin
 config={
