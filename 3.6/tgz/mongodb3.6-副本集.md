@@ -46,7 +46,6 @@ mongo --port 27017
 
 ##### 初始化副本集
 ```
-
 use admin
 config={
     _id:'test',
