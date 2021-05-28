@@ -44,6 +44,21 @@ https://github.com/chenkaidi/MongoDB/blob/main/3.6/tgz/mongod.service
 mongo --port 27017
 ```
 
+```
+mongo --port 27011
+
+use admin
+config={
+    _id:'test',
+    members:[
+        {_id:1, host:'localhost:27011',priority:2},
+        {_id:2, host:'localhost:27012',priority:1},
+        {_id:3, host:'localhost:27013',arbiterOnly:true}
+    ]
+}
+
+rs.initiate(config)
+```
 创建一个超级用户
 
 超级用户的role有两种，userAdmin或者userAdminAnyDatabase(比前一种多加了对所有数据库的访问)。
