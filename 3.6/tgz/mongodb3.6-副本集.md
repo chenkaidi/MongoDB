@@ -12,7 +12,9 @@ wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.6.23.tgz
 ##### tgz包安装
 ```
 mkdir /data
-/data/mongodb
+mv mongodb-linux-x86_64-rhel70-3.6.23.tgz /data
+tar -xvf mongodb-linux-x86_64-rhel70-3.6.23.tgz
+ln -s mongodb-linux-x86_64-rhel70-3.6.23 mongodb
 echo 'export PATH=$PATH:/data/mongodb/bin' >> /etc/profile
 source /etc/profile
 ```
