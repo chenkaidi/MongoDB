@@ -13,6 +13,7 @@ wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.6.23.tgz
 ```
 mkdir /data
 /data/mongodb
+echo 'export $PATH=$PATH:/data/mongodb/bin' >> /etc/profile
 ```
 
 ### 3.创建数据目录
