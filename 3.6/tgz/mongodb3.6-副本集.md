@@ -2,14 +2,12 @@
 
 ### 1.配置安装 
 
-##### 或者下载tgz包
 ```
 wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.6.23.tgz
 ```
 
 ### 2.安装
 
-##### tgz包安装
 ```
 mkdir /data
 mv mongodb-linux-x86_64-rhel70-3.6.23.tgz /data
