@@ -91,6 +91,11 @@ db是指定数据库的名字，admin是管理数据库。
 >use idaas
 >db.createUser({ user: "idaas", pwd: "idaas", roles: [{ role: "readWrite", db: "idaas" }] })
 ```
+```
+>use idaas
+>db.updateUser({ user: "idaas", roles: [{ role: "dbOwner", db: "idaas" }] })
+```
+
 ##### 验证用户
 ```
 mongo -u idaas -p idaas
