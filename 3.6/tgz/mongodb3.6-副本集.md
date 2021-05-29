@@ -86,8 +86,19 @@ db是指定数据库的名字，admin是管理数据库。
 >use admin
 >db.createUser(
   {
-    user: "zhangsan",
-    pwd: "zhangsan123",
+    user: "root",
+    pwd: "root",
+    roles:
+    [
+      {roles: "userAdminAnyDatabase",db: "admin"}
+    ]
+  }
+)
+
+>db.createUser(
+  {
+    user: "admin",
+    pwd: "admin",
     roles:
     [
       {roles: "userAdminAnyDatabase",db: "admin"}
