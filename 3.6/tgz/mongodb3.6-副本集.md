@@ -93,7 +93,7 @@ db是指定数据库的名字，admin是管理数据库。
 ```
 ```
 >use idaas
->db.updateUser({ user: "idaas", roles: [{ role: "dbOwner", db: "idaas" }] })
+>db.updateUser("idaas",{roles : [{"role" : "dbOwner","db" : "idaas"}]})
 ```
 
 ##### 验证用户
