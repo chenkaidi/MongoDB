@@ -26,7 +26,7 @@ mkdir -p /data/mongodb/data /data/mongodb/logs  /data/mongodb/conf
 ```
 
 
-### 4.修改配置文件
+### 4.修改配置文件并启动
 
 /data/mongodb/conf/mongod.conf
 
@@ -35,6 +35,13 @@ https://github.com/chenkaidi/MongoDB/blob/main/3.6/tgz/mongod.conf
 /usr/lib/systemd/system/mongod.service
 
 https://github.com/chenkaidi/MongoDB/blob/main/3.6/tgz/mongod.service
+
+##### 启动
+```
+systemctl daemon-reload
+systemctl start mongod
+systemctl enable mongod
+```
 
 ### 5.连接MongoDB数据库
 
