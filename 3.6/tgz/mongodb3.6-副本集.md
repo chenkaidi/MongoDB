@@ -84,42 +84,16 @@ db是指定数据库的名字，admin是管理数据库。
 
 ```
 >use admin
->db.createUser(
-  {
-    user: "root",
-    pwd: "root",
-    roles:
-    [
-      {roles: "userAdminAnyDatabase",db: "admin"}
-    ]
-  }
-)
-
->db.createUser(
-  {
-    user: "admin",
-    pwd: "admin",
-    roles:
-    [
-      {roles: "userAdminAnyDatabase",db: "admin"}
-    ]
-  }
-)
+>db.createUser({ user: "root", pwd: "root", roles: [{ role: "userAdminAnyDatabase", db: "admin" }] })
+>db.createUser({ user: "admin", pwd: "City_ops123.", roles: [{ role: "userAdminAnyDatabase", db: "admin" }] })
 ```
-
+```
+>use idaas
+>db.createUser({ user: "idaas", pwd: "idaas", roles: [{ role: "readWrite", db: "idaas" }] })
+```
 ##### 验证用户
 ```
->use zhangsan
->db.createUser(
-  {
-    user:"oneUser",
-    pwd:"oneUser123",
-    roles:[
-      {role:"read",db:"admin"}, #该用户可以读取admin库数据
-      {role:"readWrite",db:"test"} #该用户可以读写test库数据
-    ]
-  }
-)
+mongo -u idaas -p idaas
 ```
 
 ### 7.加权限认证
