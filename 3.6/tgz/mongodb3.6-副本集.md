@@ -108,13 +108,12 @@ mongo -u idaas -p idaas
 ##### 生成keyfile文件
 ```
 openssl rand -base64 100 > /data/mongodb/conf/keyfile
-
+到其他节点
+scp /data/mongodb/conf/keyfile  root@OtherNodeIP:/data/mongodb/conf/keyfile
 ```
 ##### 修改权限chmod
 ```
 chmod 600 /data/mongodb/conf/keyfile
-到其他节点
-scp /data/mongodb/conf/keyfile  root@OtherNodeIP:/data/mongodb/conf/keyfile
 ```
 另外需要注意，keyfile文件权限必须是X00，也就是说，不能给group和other成员分配任何权限，否则实例无法启动。
 
