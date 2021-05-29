@@ -133,7 +133,7 @@ security:
 ### 8.登录验证
 
 ```
-mongo -u root -p rootpassword --authenticationDatabase admin
+mongo 192.171.11.22:27017/idaas -u idaas -p idaas
 ```
 
 如果是库用户，必须要库下面才能验证
