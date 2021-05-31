@@ -132,22 +132,21 @@ security:
 ### 8.登录验证
 
 ```
-mongo 192.171.11.22:27017/idaas -u idaas -p idaas
+mongo 192.168.0.1:27017/idaas -u idaas -p idaas
 ```
 
 如果是库用户，必须要库下面才能验证
 
 ```
 >mongo
->use test
->db.auth("oneUser","oneUser123");远程登录基本语法：
+>use idaas
+>db.auth("idaas","idaas")
+```
+```
+远程登录基本语法：
 mongodb://用户名:密码@IP或hostname/【指定库名】
 例
 > mongodb://admin:123456@localhost/test
-```
-
-```
-
 ```
 
 ### 9.查看当前用户的权限
