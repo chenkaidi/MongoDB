@@ -88,6 +88,10 @@ db是指定数据库的名字，admin是管理数据库。
 >db.createUser({ user: "admin", pwd: "City_ops123.", roles: [{ role: "userAdminAnyDatabase", db: "admin" }] })
 ```
 ```
+>use lscloud
+>db.createUser({ user: "lscloud", pwd: "lscloud", roles: [{ role: "dbOwner", db: "lscloud" }] })
+```
+```
 >use idaas
 >db.createUser({ user: "idaas", pwd: "idaas", roles: [{ role: "readWrite", db: "idaas" }] })
 ```
