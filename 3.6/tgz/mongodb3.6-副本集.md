@@ -9,6 +9,12 @@ wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.6.23.tgz
 ### 2.安装
 
 ```
+在3台服务器上，执行如下操作
+```
+
+##### 2.1 配置
+
+```
 mkdir /data
 mv mongodb-linux-x86_64-rhel70-3.6.23.tgz /data
 tar -xvf mongodb-linux-x86_64-rhel70-3.6.23.tgz
@@ -17,7 +23,7 @@ echo 'export PATH=$PATH:/data/mongodb/bin' >> /etc/profile
 source /etc/profile
 ```
 
-### 3.创建数据目录
+##### 2.2 创建数据目录
 
 一般分配到独立的大分区
 
@@ -25,16 +31,74 @@ source /etc/profile
 mkdir -p /data/mongodb/data /data/mongodb/logs  /data/mongodb/conf
 ```
 
-
-### 4.修改配置文件并启动
+##### 2.3 修改配置文件并启动
 
 /data/mongodb/conf/mongod.conf
 
-https://github.com/chenkaidi/MongoDB/blob/main/3.6/tgz/mongod.conf
+```
+systemLog:
+    quiet: false
+    path: /data/mongodb/logs/mongod.log
+    logAppend: false
+    destination: file
+processManagement:
+    fork: true  # fork and run in background
+    pidFilePath: /data/mongodb/mongod.pid  # location of pidfile, 根据mongod.service,该参数不变
+    timeZoneInfo: /usr/share/zoneinfo
+net:
+    bindIp: 0.0.0.0
+    port: 27017
+    maxIncomingConnections: 65536
+    wireObjectCheck: true
+    ipv6: false
+storage:
+    dbPath: /data/mongodb/data
+    indexBuildRetry: true
+    journal:
+        enabled: true
+operationProfiling:
+    slowOpThresholdMs: 100
+    mode: off
+replication:
+    oplogSizeMB: 10240
+    replSetName: longshine
+    secondaryIndexPrefetch: all
+```
 
 /usr/lib/systemd/system/mongod.service
 
-https://github.com/chenkaidi/MongoDB/blob/main/3.6/tgz/mongod.service
+```
+[Unit]
+Description=MongoDB Database Server
+Documentation=https://docs.mongodb.org/manual
+After=network.target
+
+[Service]
+Environment="OPTIONS=-f /data/mongodb/conf/mongod.conf"
+ExecStart=/data/mongodb/bin/mongod $OPTIONS
+PIDFile=/data/mongodb/mongod.pid
+Type=forking
+# file size
+LimitFSIZE=infinity
+# cpu time
+LimitCPU=infinity
+# virtual memory size
+LimitAS=infinity
+# open files
+LimitNOFILE=64000
+# processes/threads
+LimitNPROC=64000
+# locked memory
+LimitMEMLOCK=infinity
+# total threads (user+kernel)
+TasksMax=infinity
+TasksAccounting=false
+# Recommended limits for for mongod as specified in
+# http://docs.mongodb.org/manual/reference/ulimit/#recommended-settings
+
+[Install]
+WantedBy=multi-user.target
+```
 
 ##### 启动
 ```
@@ -43,7 +107,7 @@ systemctl start mongod
 systemctl enable mongod
 ```
 
-### 5.连接MongoDB数据库
+### 3.连接MongoDB数据库
 
 直接使用mongo命令进行连接，默认端口是27017
 
@@ -66,6 +130,8 @@ config={
 rs.initiate(config)
 rs.status()
 ```
+注意：host的ip，如果是内网ip，那么连接时，要使用内网地址
+
 上面执行成功后，可以使用rs.status()查看副本集当前状态。
 上面配置文件中，_id:'test'表示副本集名称，与前面mongodb.conf配置文件中的replSet参数配置的名称要一致。
 
@@ -74,7 +140,7 @@ priority:2表示优先级，优先级越高，副本集初始化时会选举为�
 
 
 
-### 6.创建用户
+### 4.创建用户
 
 ##### 创建一个超级用户
 
@@ -88,16 +154,13 @@ db是指定数据库的名字，admin是管理数据库。
 >db.createUser({ user: "admin", pwd: "City_ops123.", roles: [{ role: "userAdminAnyDatabase", db: "admin" }] })
 ```
 ```
->use lscloud
->db.createUser({ user: "lscloud", pwd: "lscloud", roles: [{ role: "dbOwner", db: "lscloud" }] })
-```
-```
 >use idaas
 >db.createUser({ user: "idaas", pwd: "idaas", roles: [{ role: "readWrite", db: "idaas" }] })
 ```
 ```
 >use idaas
 >db.updateUser("idaas",{roles : [{"role" : "dbOwner","db" : "idaas"}]})
+修改权限dbOwner
 ```
 
 ##### 验证用户
@@ -105,7 +168,7 @@ db是指定数据库的名字，admin是管理数据库。
 mongo -u idaas -p idaas
 ```
 
-### 7.加权限认证
+### 5.加权限认证
 
 副本集采用keyfile文件来实现权限认证，并且副本集中的所有成员使用的keyfile必须一样。
 
@@ -124,8 +187,9 @@ chmod 600 /data/mongodb/conf/keyfile
 生成好keyfile之后，将keyfile写入mongodb.conf配置文件中，在mongodb.conf配置文件中增加如下配置：
 
 keyFile=/data/mongodb/conf/keyfile
-其他实例做同样修改，重启所有实例。
+其他实例做同样修改，restart重启所有实例。
 在配置文件中开启了keyFile，就不需要开启auth认证，因为开启keyFile，就默认开启了auth。
+
 ```
 security:  
     authorization: enabled  
@@ -133,27 +197,13 @@ security:
     keyFile: /data/mongodb/conf/keyfile 
 ```
 
-### 8.登录验证
+### 6.登录验证
 
 ```
-mongo 192.168.0.1:27017/idaas -u idaas -p idaas
+mongo 192.171.11.22:27017/idaas -u idaas -p idaas
 ```
 
-如果是库用户，必须要库下面才能验证
-
-```
->mongo
->use idaas
->db.auth("idaas","idaas")
-```
-```
-远程登录基本语法：
-mongodb://用户名:密码@IP或hostname/【指定库名】
-例
-> mongodb://admin:123456@localhost/test
-```
-
-### 9.查看当前用户的权限
+### 7.查看当前用户的权限
 ```
 use mydbdb.runCommand(
   {
