@@ -120,7 +120,7 @@ mongo --port 27017
 ```
 use admin
 config={
-    _id:'test',
+    _id:'test',  ### 'test'表示副本集名称，与前面mongodb.conf配置文件中的replSet参数配置的名称要一致
     members:[
         {_id:1, host:'192.168.0.1:27017',priority:2},
         {_id:2, host:'192.168.0.2:27017',priority:1},
