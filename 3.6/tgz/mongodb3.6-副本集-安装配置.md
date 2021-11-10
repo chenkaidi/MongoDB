@@ -153,6 +153,7 @@ db是指定数据库的名字，admin是管理数据库。
 >use admin
 >db.createUser({ user: "root", pwd: "root", roles: [{ role: "userAdminAnyDatabase", db: "admin" }] })
 >db.createUser({ user: "admin", pwd: "City_ops123.", roles: [{ role: "userAdminAnyDatabase", db: "admin" }] })
+>db.createUser({ user: "zhangsan", pwd: "zhangsan", roles: [{ role: "readAnyDatabase", db: "admin" }] });
 ```
 ```
 >use idaas
