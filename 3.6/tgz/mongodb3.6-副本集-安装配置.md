@@ -222,7 +222,7 @@ security:
 ### 6.登录验证
 
 ```
-mongo 192.171.11.22:27017/idaas -u idaas -p idaas
+mongo 192.171.11.22:27017/admin -u root -p root
 ```
 
 ### 7.查看当前用户的权限
