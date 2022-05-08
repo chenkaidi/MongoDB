@@ -34,7 +34,7 @@ mkdir -p /data/mongodb/data /data/mongodb/logs  /data/mongodb/conf
 
 ##### 2.3 修改配置文件并启动
 
-/data/mongodb/conf/mongod.conf
+/data/mongodb/conf/mongod.conf  # 单机版时，去掉 replication 部分
 
 ```
 systemLog:
