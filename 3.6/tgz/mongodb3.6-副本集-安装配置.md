@@ -220,6 +220,7 @@ security:
     clusterAuthMode: keyFile  
     keyFile: /data/mongodb/conf/keyfile 
 ```
+##### restart重启所有实例
 
 ### 6.登录验证
 
