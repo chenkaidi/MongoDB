@@ -118,7 +118,7 @@ mongo --port 27017
 
 ##### 初始化副本集
 
-### 'test'表示副本集名称，与前面mongodb.conf配置文件中的replSet参数配置的名称要一致
+##### 'test'表示副本集名称，与前面mongodb.conf配置文件中的replSet参数配置的名称要一致
 
 ```
 use admin
