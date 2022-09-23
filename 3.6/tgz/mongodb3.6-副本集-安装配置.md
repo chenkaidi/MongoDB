@@ -141,7 +141,10 @@ rs.status()
 
 priority:2表示优先级，优先级越高，副本集初始化时会选举为主。arbiterOnly:true表示该实例为仲裁节点，不存储数据，只参与投票。
 
-
+##### 副本集状态
+```
+rs.status()
+```
 
 
 ### 4.创建用户
@@ -242,7 +245,7 @@ use mydbdb.runCommand(
 ```
 db.runCommand({usersInfo:"userName"})
 ```
-##### 修改密码
+##### 修改密码(需要在 primary 节点上执行)
 ```
 use admin
 db.changeUserPassword("username", "xxx")
