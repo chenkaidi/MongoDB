@@ -228,7 +228,7 @@ security:
 ### 6.登录验证
 
 ```
-mongo 192.171.11.22:27017/admin -u root -p root
+mongo 192.171.11.22:27017/admin -u admin -p xxxxxx
 ```
 
 ### 7.查看当前用户的权限
