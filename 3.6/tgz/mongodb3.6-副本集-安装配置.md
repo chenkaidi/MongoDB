@@ -248,7 +248,8 @@ db.runCommand({usersInfo:"userName"})
 ##### 修改密码(需要在 primary 节点上执行)
 ```
 use dbName
-db.changeUserPassword("username", "xxxxxx"), 注意：dbName和username相同
+注意：dbName和username相同
+db.changeUserPassword("username", "xxxxxx")
 ```
 
 ##### 修改密码和用户信息
