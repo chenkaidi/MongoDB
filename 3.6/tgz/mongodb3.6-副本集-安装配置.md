@@ -245,7 +245,7 @@ use mydbdb.runCommand(
 ```
 db.runCommand({usersInfo:"userName"})
 ```
-##### 修改密码(需要在 primary 节点上执行)
+##### 修改密码(需要在 primary 节点上执行，先用admin登录)
 ```
 use dbName
 注意：dbName和username相同
