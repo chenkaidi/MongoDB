@@ -24,3 +24,15 @@ var config={
 rs.initiate(config)
 rs.status()
 ```
+
+```
+修改成 公网ip
+var config={
+     _id:"rs",
+     members:[
+         {_id:0,host:"121.229.9.91:27001"},
+         {_id:1,host:"121.229.9.91:27002"},
+         {_id:2,host:"121.229.9.91:27003"}
+]};
+rs.reconfig(config)
+```
