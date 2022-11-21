@@ -14,9 +14,9 @@ docker exec -it mongo1 mongo admin
 var config={
      _id:"rs",
      members:[
-         {_id:0,host:"你服务器ip:27000"},
-         {_id:1,host:"你服务器ip:27001"},
-         {_id:2,host:"你服务器ip:27002"}
+         {_id:0,host:"你服务器ip:27001"},
+         {_id:1,host:"你服务器ip:27002"},
+         {_id:2,host:"你服务器ip:27003"}
 ]};
 ```
 
